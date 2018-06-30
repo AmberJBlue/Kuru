@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+       
+        <meta charset="utf-8">
+        <title>Kuru - Music made easy!</title>
+        <link rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css'>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+            body{
+                font-family: 'Quicksand', sans-serif;
+                margin: 0;
+                background-color: rgb(233, 233, 233);
+            }
+            nav{
+                background: #F07464;
+                padding: 20px 10px;
+            }
+            nav ul{
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 0;
+                float: right;
+                display: flex;
+                justify-content: space-between;
+            }
+            nav li{
+                list-style-type: none;
+                display: inline-block;
+                margin: 0 10px 0 0;
+                float: right;
+                display: flex;
+                justify-content: space-between;
+            }
+            nav a{
+                color: #fff;
+                font-size: 18px;
+                text-decoration: none !important;
+                padding: 10px;
+                display: block;
+            }
+
+            nav a:hover{
+                color: rgb(147, 196, 252); 
+            }
+
+            main{
+                max-width: 960px;
+                margin: 30px auto;
+                /* padding: 0 10px; */
+                color: #333;
+                margin-left: 190px;
+                float: left;
+            }
+            header{
+                max-width: 960px;
+                margin: 30px auto;
+                padding: 0 10px;
+                color: #333;
+            }
+            .profilePicture {
+                border-radius: 50%;
+                width:100px;
+                height:100px;
+                float: right;
+
+
+
+            }
+
+            .card {
+                /* Add shadows to create the "card" effect */
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.2s;
+                border-radius: 5px;
+                background-color: rgb(240, 240, 240);
+                position:absolute;
+                /* left:200px; 
+                top:82px; */
+                right: 40px;
+                width: 400px;
+                float: right;
+                padding: 20px;
+
+
+            }
+
+            .tracks {
+                float: right;
+                /* background-color: #F07464;   */
+                width: 950px;
+                height: 950px;
+                border-left-style: solid;
+                border-left-color: rgb(139, 139, 139)
+            }
+            .logo{
+                padding-left: 50px;
+            }
+
+            .profileCardHome{
+                position: relative;
+                padding-left: 40px;
+                float: right;
+                /* padding-right: 90px; */
+                top: 20px;
+                
+            }
+
+            .tracklist{
+                width: 900px;
+            }
+
+            main li {
+                white-space:nowrap;
+                overflow:hidden;
+                text-overflow:ellipsis;
+            }
+            
+            main ul{
+                float: left;
+            }
+           
+            .freestyle-tag{
+                /* border: 2px solid #73AD21;
+                border-radius: 25px; */
+                width: 78px;
+                float: right;
+                color: #73AD21;
+
+            }
+            .request-tag{
+                /* border: 2px solid rgb(255, 0, 0);
+                border-radius: 25px; */
+                width: 70px;
+                float: right;
+                color: rgb(255, 0, 0);
+               
+           }
+
+           .request-text{
+            padding: 2px;
+           }
+
+           .freestyle-text{
+               padding: 2px;
+           }
+                /* Apologies for the large base64 image file */
+
+
+           
+        </style>
+        
+    </head>
+    <body>
+        <nav>
+            <img class="logo" src='https://i.imgur.com/Bfx4gn6.png'/>
+            <ul>
+                <% if (user) { %>
+                <li><a href="/auth/logout">Log out</a></li>
+                <% } else { %>
+                <li><a href="/auth/login">Login</a></li>
+                <% } %>
+                <!-- <li><a href="/">Charts</a></li> -->
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/tracks/upload">Upload</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </nav>
+        <div class=""></div>
+        <header>
+        </header>
+        <% if (user) { %>
+            <div class="card profileCardHome">
+                    <div style="word-wrap: break-word; width: 350px">
+                    <img class= "profilePicture" src="<%= user.thumbnail %>" />
+                     <h1>Welcome, <br><%= user.username %>!</h1>
+                    <p>
+                        Would you like some inspiration? <br>Check out our spotify playlist:
+                        <br>
+                        <br>
+                        <iframe src="https://open.spotify.com/embed/user/amberjblue/playlist/0yhpnSOhCYfU9x3bBFXU7S" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>                    </p>
+                    </div>
+            </div>
+            <% } else { %>
+                <div class="card profileCardHome">
+                         <h1>Welcome to Kuru!</h1>
+                         <div style="word-wrap: break-word; width: 350px">
+                        <p>
+                            Kuru is a platform created in order to make songwriting easier than ever. 
+                            <br>
+                            <br>
+                            Tracks may be flagged either Freestyle or Request. 
+                            <br>
+                            <br>
+                            <i>Freestyle</i> - invite other users to improvise around your original track and let see what happens.
+                            <br>
+                            <br>
+                            <i>Request</i> - You may request specific things to be completed on your track. 
+                            <br><br>
+                            Let's say you want a rap verse in your song but you've a guitarist. 
+                            No problem! Just post a request and watch the replies come in.
+                        </p>
+                        </div>
+                </div>
+        <% } %>
+        
+        <main>
+            <h1><%=title%></h1>
+            <ul class="list-group tracklist">
+                <% tracks.forEach(function(track) { %>
+                    <a href="/track/<%=track.trackID%>">
+                    <li class="list-group-item"><%= track.title %> &nbsp  -  &nbsp
+                        <%= track.description %>
+                        
+                        <% if (track.trackType == "freestyle") { %>
+                            <i><h6 class="freestyle-tag freestyle-text">Freestyle</h6></i>
+                            <% } else { %>
+                            <i><h6 class="request-tag request-text">Request</h6></i>
+                            <% } %>
+                    </a>
+                    </li>
+                <% }); %>
+            </ul>
+        </main>
+        
+    </body>
+</html>

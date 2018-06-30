@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <link rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css'>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+            body{
+                font-family: 'Quicksand', sans-serif;
+                margin: 0;
+                background-color: rgb(233, 233, 233);
+            }
+            nav{
+                background: #F07464;
+                padding: 20px 10px;
+            }
+            nav ul{
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 0;
+                float: right;
+            }
+            nav li{
+                list-style-type: none;
+                display: inline-block;
+                margin: 0 10px 0 0;
+                float: right;
+            }
+            nav a{
+                color: #fff;
+                font-size: 18px;
+                text-decoration: none !important;
+                padding: 10px;
+                display: block;
+            }
+
+            nav a:hover{
+                color: rgb(147, 196, 252); 
+            }
+
+            main, header{
+                max-width: 960px;
+                margin: 30px auto;
+                padding: 0 10px;
+                color: #333;
+            }
+
+            .google-btn{
+                color: #fff;
+                text-decoration: none;
+                font-size: 18px;
+                padding: 10px;
+                background: #F07464;
+                border-radius: 5%;
+            }
+            .logo{
+                padding-left: 50px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <nav>
+             <img src='https://i.imgur.com/Bfx4gn6.png'/>
+            <ul>
+                <!-- <li><a href="/">Charts</a></li> -->
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/tracks/upload">Upload</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </nav>
+        <header>
+            <h1>Login using...</h1>
+        </header>
+        <main>
+            <a class="google-btn" href="/auth/google">Google+</a>
+        </main>
+    </body>
+</html>

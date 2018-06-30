@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+       
+        <meta charset="utf-8">
+        <title>Kuru - Music made easy!</title>
+        
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+            body{
+                font-family: 'Quicksand', sans-serif;
+                margin: 0;
+                background-color: rgb(233, 233, 233);
+            }
+            nav{
+                background: #F07464;
+                padding: 20px 10px;
+            }
+            nav ul{
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 0;
+                float: right;
+            }
+            nav li{
+                list-style-type: none;
+                display: inline-block;
+                margin: 0 10px 0 0;
+                float: right;
+            }
+            nav a{
+                color: #fff;
+                font-size: 18px;
+                text-decoration: none !important;
+                padding: 10px;
+                display: block;
+            }
+            
+            .card {
+                /* Add shadows to create the "card" effect */
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.2s;
+                border-radius: 5px;
+                background-color: rgb(240, 240, 240);
+                position:absolute;
+                left:200px; 
+                top:82px;
+                width: 1300px;
+                height: 950px;
+                text-align: center;
+                
+            }
+
+            nav a:hover{
+                color: rgb(147, 196, 252); 
+            }
+
+            main, header{
+                max-width: 960px;
+                margin: 30px auto;
+                padding: 0 10px;
+                color: #333;
+            }
+            
+            .logo{
+                padding-left: 50px;
+            }
+            .logo{
+                padding-left: 50px;
+            }
+            textarea {
+                resize: none;
+            }
+
+            
+        </style>
+        
+    </head>
+    <body>
+        <nav>
+           <img class="logo" src='https://i.imgur.com/Bfx4gn6.png'/>
+            <ul>
+                 <% if (user) { %>
+                <li><a href="/auth/logout">Log out</a></li>
+                <% } else { %>
+                <li><a href="/auth/login">Login</a></li>
+                <% } %>
+                <!-- <li><a href="/">Charts</a></li> -->
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/tracks/upload">Upload</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </nav>
+       
+        <div class="card"> 
+        <header>
+         <% if (user) { %>
+            <h1>Upload Your Track</h1>
+        </header>
+        <form method="POST" action="/tracks/upload">
+            <i><h5>Currently the only file host supported is <a href="https://clyp.it/">Clyp.it.</a> Please upload your file there and paste the direct <br>
+                link below. Be sure to enable downloads to allow other user access to your song.</h5></i>
+            <div id="form-group">
+              <label>Title*</label>
+              <input class="form-control" name="title" type="text"/>
+            </div>
+            <!-- <div id="form-group">
+                <label>Where is your file hosted?*</label>
+                <p> Currently we support two methods of sharing your files, through <a href="https://clyp.it/">Clyp.It</a> and <a href="https://soundcloud.com/">Soundcloud</a>.  <br>Upload the track to one of these sites and paste the direct link below. Please be sure to  <br>allow downloads on your track in order to allow other 
+                users  to access the file.</p>
+                <select class="form-control" name="host">
+                        <option value="clyp">Clyp.it</option>
+                        <option value="soundcloud">Soundcloud</option>
+                      </select><br>
+              </div><br/> -->
+            <div id="form-group">
+            <label>Link*</label>
+            <input class="form-control" name="link" type="text"/>
+            </div><br/>
+            <div id="form-group">
+              <label>Description</label><br>
+              <textarea rows="5" cols="50" wrap="hard" class="form-control" name="description"></textarea>
+            </div><br/>
+            <div id="form-group">
+              <label>Genre</label>
+              <select class="form-control" name="genre">
+                    <option value="No Genre">No Genre</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Pop">Pop</option>
+                    <option value="Alternative">Alternative</option>
+                    <option value="Jazz">Jazz</option>
+                    <option value="Hip Hop/R&B<">Hip Hop/R&B</option>
+                    <option value="Punk">Punk</option>
+                    <option value="Classical">Classical</option>
+                    <option value="Metal">Metal</option>
+                    <option value="Country">Country</option>
+                    <option value="Punk">Punk</option>
+                    <option value="Funk">Funk</option>
+                    <option value="Electronic">Electronic</option>
+                  </select><br>
+            </div><br/>
+            <select class="form-control" name="trackType">
+                    <option value="freestyle">Freestyle</option>
+                    <option value="request">Request</option>
+                  </select><br>
+                  <br>
+                  
+                  
+                  
+            <input class="btn btn-primary" type="submit" value="Submit"/>
+          </form>
+
+          <% } else { %>
+            <h1 align="center"> PLEASE LOGIN TO UPLOAD A TRACK</h1>
+            <% } %>
+          </div>
+    </body>
+
+</html>

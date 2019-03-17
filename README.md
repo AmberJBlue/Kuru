@@ -1,6 +1,6 @@
 # Kuru
 
-**This project is currently in progress as the World Music Hackathon ends on July 1, 2018. Please check back here afterwords to see the finished product.**
+**This project was created as a part of the 2018 World Music Hackathon**
 
 Frameworks and Languages used:
 - [Node.js](https://nodejs.org/en/)
